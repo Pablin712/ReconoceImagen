@@ -6,15 +6,19 @@
         {
             var consumeACV = new ConsumeACV
             {
-                SubscriptionKey = "d1c3a31c3e5243e8af964c1c95a01cb4",
-                ComputerVisionEndpoint = "https://computervisionutn2023pagado.cognitiveservices.azure.com",
+                SubscriptionKey = "1pbS9MFMMCOtsQWBPYyAuvUgJoRfMIE20k6hUlJBr1eVn3G6g4MIJQQJ99BGAC4f1cMXJ3w3AAAFACOGPCLC",
+                ComputerVisionEndpoint = "https://reconoceimagen.cognitiveservices.azure.com/",
                 Features = "tags,read,caption,denseCaptions,smartCrops,objects,people",
                 ImageUrl = "https://www.ritmomedia.io/wp-content/uploads/2023/07/RM_CI_Mucho-texto-1-1229x1536.jpg"
             };
 
-            var result = consumeACV.AnalyzeImage();
+            //var resultEs = consumeACV.AnalyzeImage("es");
+            Console.WriteLine("Resultado en español:");
+            //Console.WriteLine(resultEs.ToString());
 
-            Console.WriteLine(result.ToString());
+            var resultEn = consumeACV.AnalyzeImage();
+            Console.WriteLine("Result in English:");
+            Console.WriteLine(resultEn.ToString());
 
             Console.ReadLine();
         }
