@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Reconocer Imagen";
+}
+
+<h1>Reconocer Imagen con Azure</h1>
+
+<form method="post">
+    <label>URL de imagen:</label><br />
+    <input type="text" name="imageUrl" placeholder="Pega la URL aquí" required style="width:60%" />
+    <button type="submit">Analizar</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">❌ Error: @ViewBag.Error</p>
+}
+
+@if (ViewBag.ImageUrl != null)
+{
+    <hr />
+    <img src="@ViewBag.ImageUrl" style="max-width:300px" />
+    <p><strong>📌 Descripción en español:</strong> @ViewBag.CaptionES</p>
+    <p><strong>📌 Description in English:</strong> @ViewBag.CaptionEN</p>
+}
