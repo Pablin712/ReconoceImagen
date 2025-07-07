@@ -11,10 +11,12 @@ namespace ReconoceImagen
     {
         private readonly string subscriptionKey = "1pbS9MFMMCOtsQWBPYyAuvUgJoRfMIE20k6hUlJBr1eVn3G6g4MIJQQJ99BGAC4f1cMXJ3w3AAAFACOGPCLC";
         private readonly string endpoint = "https://reconoceimagen.cognitiveservices.azure.com/";
+        private readonly string features = "caption"; // solo analizamos descripción
 
-        public async Task<ImageAnalysisResult> AnalyzeImage(string imageUrl, string language)
+        public async Task<ImageAnalysisResult> AnalyzeImage(string imageUrl)
         {
-            var uri = $"{endpoint}/computervision/imageanalysis:analyze?model-version=latest&language=en&api-version=2024-02-01&features={Features}";
+            var uri = $"{endpoint}computervision/imageanalysis:analyze" +
+                      $"?model-version=latest&language=en&api-version=2024-02-01&features={features}";
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
@@ -32,8 +34,8 @@ namespace ReconoceImagen
             }
             else
             {
-                var errorBody = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Error al analizar la imagen: {errorBody}");
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"❌ Error en el análisis: {error}");
             }
         }
     }

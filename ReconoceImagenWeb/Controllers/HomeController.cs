@@ -19,12 +19,10 @@ namespace ReconoceImagenWeb.Controllers
         {
             try
             {
-                var resultES = await _acv.AnalyzeImage(imageUrl, "es");
-                var resultEN = await _acv.AnalyzeImage(imageUrl, "en");
+                var result = await _acv.AnalyzeImage(imageUrl);
 
                 ViewBag.ImageUrl = imageUrl;
-                ViewBag.CaptionES = resultES.captionResult?.values?.FirstOrDefault()?.text;
-                ViewBag.CaptionEN = resultEN.captionResult?.values?.FirstOrDefault()?.text;
+                ViewBag.Caption = result.captionResult?.values?.FirstOrDefault()?.text;
             }
             catch (Exception ex)
             {
